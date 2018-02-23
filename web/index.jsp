@@ -25,13 +25,15 @@
         <%--container for buttons + display--%>
         <div>
 
-          <%--calculator display--%>
-          <div>
-
-          </div>
-
           <form action="/" method="post">
-            <%--container for char buttons + = operand --%>
+
+            <%--calculator display--%>
+            <div>
+              <input type="text" name="input_box" value="<c:out value="${calcString}"/>">
+            </div>
+
+
+            <%--container for char buttons + = char --%>
             <div>
 
               <input id="char" type="submit" name="char" value="1">
@@ -47,16 +49,16 @@
               <%--<input id="char" type="submit" name="char" value=".">--%>
 
 
-              <input id="char" type="submit" name="operand" value="=">
+              <input id="char" type="submit" name="calculate" value="=">
 
             </div>
 
             <%--container for operands--%>
             <div>
-              <input id="operand" type="submit" name="operand" value="/">
-              <input id="operand" type="submit" name="operand" value="*">
-              <input id="operand" type="submit" name="operand" value="-">
-              <input id="operand" type="submit" name="operand" value="+">
+              <input id="char" type="submit" name="char" value="/">
+              <input id="char" type="submit" name="char" value="*">
+              <input id="char" type="submit" name="char" value="-">
+              <input id="char" type="submit" name="char" value="+">
             </div>
           </form>
 

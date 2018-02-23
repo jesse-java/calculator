@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpSession;
 import com.naldojesse.web.models.Calculator;
 import java.util.ArrayList;
-import
 
 @WebServlet("")
 public class Calculators extends HttpServlet {
@@ -27,15 +26,14 @@ public class Calculators extends HttpServlet {
 
 
         if (request.getParameter("char") != null) {
-            System.out.println(request.getParameter("char"));
-            Double number = Double.valueOf(request.getParameter("char"));
-            currentCalculator.performOperation(number);
-        } else if (request.getParameter("operand") != null) {
-            System.out.println(request.getParameter("operand"));
-            String operand = request.getParameter("operand");
-            currentCalculator.performOperation(operand);
+            System.out.println(request.getParameter("input_box"));
+            String inputStr = request.getParameter("input_box");
+            inputStr += request.getParameter("char");
+            currentCalculator.setCalcString(inputStr);
+
         }  else if (request.getParameter("calculate") != null) {
-            Calculator calc = currentCalculator.performOperation();
+            currentCalculator.calculate();
+            System.out.println(currentCalculator.getResults());
         }
 
         response.sendRedirect("/");
@@ -47,7 +45,7 @@ public class Calculators extends HttpServlet {
         System.out.println(request.getParameter("char"));
 
 
-        ArrayList<Calculator> sResults;
+        ArrayList<Double> sResults;
         Calculator currentCalculator;
 
         HttpSession session = request.getSession();
@@ -61,11 +59,14 @@ public class Calculators extends HttpServlet {
             session.setAttribute("currentCalculator", new Calculator() );
         }
 
-        sResults = (ArrayList<Calculator>) session.getAttribute("sResults");
+        sResults = (ArrayList<Double>) session.getAttribute("sResults");
         currentCalculator = (Calculator) session.getAttribute("currentCalculator");
 
         request.setAttribute("sResults", sResults);
-        request.setAttribute("currentCalculator", currentCalculator);
+        request.setAttribute("calcString", currentCalculator.getCalcString());
+
+
+
 
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
