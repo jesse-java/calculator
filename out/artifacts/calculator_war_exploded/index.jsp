@@ -44,7 +44,7 @@
               <input id="char" type="submit" name="char" value="8">
               <input id="char" type="submit" name="char" value="9">
               <input id="char" type="submit" name="char" value="0">
-              <%--<input id="char" type="submit" name="char" value=".">--%>
+              <input id="char" type="submit" name="char" value=".">
 
 
               <input id="char" type="submit" name="operand" value="=">
@@ -54,7 +54,7 @@
             <%--container for operands--%>
             <div>
               <input id="operand" type="submit" name="operand" value="/">
-              <input id="operand" type="submit" name="operand" value="*">
+              <input id="operand" type="submit" name=       "operand" value="*">
               <input id="operand" type="submit" name="operand" value="-">
               <input id="operand" type="submit" name="operand" value="+">
             </div>
