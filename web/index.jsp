@@ -68,6 +68,11 @@
        <%--results display --%>
       <div>
         <h1>Previous Results</h1>
+        <c:forEach items="${cResults}" var="res" varStatus="loop">
+          <p><c:out value="${loop.index + 1}"/>) <c:out value="${res.getResults()}"/></p>
+        </c:forEach>
+
+
       </div>
 
   </div>

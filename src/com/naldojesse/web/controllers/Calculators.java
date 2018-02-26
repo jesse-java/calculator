@@ -25,15 +25,24 @@ public class Calculators extends HttpServlet {
         currentCalculator = (Calculator) session.getAttribute("currentCalculator");
 
 
+        System.out.println(request.getParameter("input_box"));
+        String inputStr = request.getParameter("input_box");
+
+
+//        //take the post form and check if char
         if (request.getParameter("char") != null) {
-            System.out.println(request.getParameter("input_box"));
-            String inputStr = request.getParameter("input_box");
             inputStr += request.getParameter("char");
             currentCalculator.setCalcString(inputStr);
+            System.out.println(currentCalculator.getCalcString());
 
         }  else if (request.getParameter("calculate") != null) {
+            currentCalculator.setCalcString(inputStr);
             currentCalculator.calculate();
-            System.out.println(currentCalculator.getResults());
+            System.out.println("Results" + currentCalculator.getResults());
+
+            sResults.add(currentCalculator);
+            session.removeAttribute("currentCalculator");
+
         }
 
         response.sendRedirect("/");
@@ -62,7 +71,7 @@ public class Calculators extends HttpServlet {
         sResults = (ArrayList<Double>) session.getAttribute("sResults");
         currentCalculator = (Calculator) session.getAttribute("currentCalculator");
 
-        request.setAttribute("sResults", sResults);
+        request.setAttribute("cResults", sResults);
         request.setAttribute("calcString", currentCalculator.getCalcString());
 
 
